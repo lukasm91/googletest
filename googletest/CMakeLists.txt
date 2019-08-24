@@ -109,6 +109,10 @@ if (INSTALL_GTEST)
     "${config_file}" INSTALL_DESTINATION ${cmake_files_install_dir})
   install(FILES ${version_file} ${config_file}
     DESTINATION ${cmake_files_install_dir})
+
+  foreach(t $CACHE{gtest_installed_libraries})
+    add_library(${cmake_package_name}::${t} ALIAS ${t})
+  endforeach()
 endif()
 
 # Where Google Test's .h files can be found.
